@@ -1,5 +1,13 @@
 import { users, front } from "./data.js";
+import { auth } from "./auth.js";
+
 const base_url = '127.0.0.1:8000/';
+
+// const auth = new Auth();
+
+document.querySelector(".logout").addEventListener("click", (e) => {
+    auth.logOut();
+});
 
 $(document).ready(function () {
     let page = $('body').data('page');
