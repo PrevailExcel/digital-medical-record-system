@@ -4,14 +4,17 @@
     --priColor: #d25400;
     --secColor: #1f6899;
 }
+
 .btn-primary {
     background: var(--secColor) !important;
     border: 0 !important;
 }
+
 .btn-secondary {
     background: var(--priColor) !important;
     border: 0 !important;
 }
+
 .dark-bg {
     /* background-color: var(--secColor) !important; */
     /* height: 100vh !important; */
@@ -19,7 +22,7 @@
     background: var(--secColor) !important;
 }
 
-.white-side {    
+.white-side {
     border-top-left-radius: 10%;
     border-bottom-left-radius: 10%;
     background-color: #f4f4f4 !important;
@@ -34,7 +37,8 @@
     }
 }
 
-.login.form-control, .input-group-text {
+.login.form-control,
+.input-group-text {
     background: transparent !important;
     border-bottom: 1px solid var(--secColor) !important;
 }
@@ -60,3 +64,6 @@
     }
 }
 
+.nav-link {
+    color: var(--secColor);
+}

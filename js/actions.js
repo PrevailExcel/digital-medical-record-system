@@ -3,17 +3,44 @@ import { auth } from "./auth.js";
 
 const base_url = '127.0.0.1:8000/';
 
-// const auth = new Auth();
+function includeHTML() {
+    var z, i, elmnt, file, xhttp;
+    /* Loop through a collection of all HTML elements: */
+    z = document.getElementsByTagName("*");
+    for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("mySidebar");
+        if (file) {
+            /* Make an HTTP request using the attribute value as the file name: */
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4) {
+                    if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+                    if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+                    /* Remove the attribute, and call this function once more: */
+                    elmnt.removeAttribute("mySidebar");
+                    includeHTML();
+                }
+            }
+            xhttp.open("GET", file, true);
+            xhttp.send();
+            /* Exit the function: */
+            return;
+        }
+    }
+}
 
-document.querySelector(".logout").addEventListener("click", (e) => {
-    auth.logOut();
-});
+includeHTML()
 
 $(document).ready(function () {
     let page = $('body').data('page');
     if (page == 'result') {
-        $("#full_name").text(JSON.parse(localStorage.getItem('user')).name)
-        $("#regno").text(JSON.parse(localStorage.getItem('user')).regno)
+        $(".full_name").text(JSON.parse(localStorage.getItem('user')).name)
+        $(".regno").text(JSON.parse(localStorage.getItem('user')).regno)
+        $(".fac").text(JSON.parse(localStorage.getItem('user')).faculty)
+        $(".dep").text(JSON.parse(localStorage.getItem('user')).department)
+        $(".his").text(JSON.parse(localStorage.getItem('user')).history)
     } else if (page == 'dashboard') {
         $("#d1").text(front[1])
         $("#d2").text(front[2])
@@ -75,34 +102,8 @@ $(document).ready(function () {
     } else {
         alert(getat)
     }
+
+    $("#logout").on("click", function () {
+        auth.logOut();
+    });
 });
-
-function includeHTML() {
-    var z, i, elmnt, file, xhttp;
-    /* Loop through a collection of all HTML elements: */
-    z = document.getElementsByTagName("*");
-    for (i = 0; i < z.length; i++) {
-        elmnt = z[i];
-        /*search for elements with a certain atrribute:*/
-        file = elmnt.getAttribute("mySidebar");
-        if (file) {
-            /* Make an HTTP request using the attribute value as the file name: */
-            xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4) {
-                    if (this.status == 200) { elmnt.innerHTML = this.responseText; }
-                    if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
-                    /* Remove the attribute, and call this function once more: */
-                    elmnt.removeAttribute("mySidebar");
-                    includeHTML();
-                }
-            }
-            xhttp.open("GET", file, true);
-            xhttp.send();
-            /* Exit the function: */
-            return;
-        }
-    }
-}
-
-includeHTML()
