@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+
+:root {
+    --priColor: #d25400;
+    --secColor: #1f6899;
+}
+.btn-primary {
+    background: var(--secColor) !important;
+    border: 0 !important;
+}
+.btn-secondary {
+    background: var(--priColor) !important;
+    border: 0 !important;
+}
+.dark-bg {
+    /* background-color: var(--secColor) !important; */
+    /* height: 100vh !important; */
+    /* position: absolute top; */
+    background: var(--secColor) !important;
+}
+
+.white-side {    
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+    background-color: #f4f4f4 !important;
+    position: relative !important;
+    backdrop-filter: blur(10px);
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .white-side {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+    }
+}
+
+.login.form-control, .input-group-text {
+    background: transparent !important;
+    border-bottom: 1px solid var(--secColor) !important;
+}
+
+
+.side-img {
+    animation: float 6s ease-in-out infinite;
+}
+
+
+@keyframes float {
+    0% {
+        transform: translatey(0px) translatex(0px);
+    }
+
+    50% {
+        transform: translatey(40px) translatex(70px);
+    }
+
+    100% {
+        z-index: 2;
+        transform: translatey(0px) translatex(0px);
+    }
+}
+
