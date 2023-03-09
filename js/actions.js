@@ -1,4 +1,4 @@
-import { users, front } from "./data.js";
+import { users, front, history } from "./data.js";
 import { auth } from "./auth.js";
 
 const base_url = '127.0.0.1:8000/';
@@ -41,6 +41,21 @@ $(document).ready(function () {
         $(".fac").text(JSON.parse(localStorage.getItem('user')).faculty)
         $(".dep").text(JSON.parse(localStorage.getItem('user')).department)
         $(".his").text(JSON.parse(localStorage.getItem('user')).history)
+
+        let myHistory = history.filter(item => item.regno == JSON.parse(localStorage.getItem('user')).regno)
+        myHistory.forEach(user => {
+            var lastSection = $('#hist');
+            var newSection = lastSection.clone(true);
+            newSection.attr('id', user.regno);
+            newSection.attr('data-user', user.name);
+            newSection.show()
+            $('#title', newSection).text(user.title);
+            $('#date', newSection).text(user.date);
+            $('#body', newSection).text(user.body);
+            // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
+            lastSection.after(newSection);
+
+        });
     } else if (page == 'dashboard') {
         $("#d1").text(front[1])
         $("#d2").text(front[2])
@@ -86,19 +101,29 @@ $(document).ready(function () {
         $("#result_button").click(function () {
             var user = $(this).data('user');
             window.localStorage.setItem('user', JSON.stringify(user))
-            // console.log($(this).data('user'))
             location.assign('/result.html?user=' + user.regno)
         });
     } else if (page == 'patients') {
 
-        for (let i = 0; i < 12; i++) {
+        users.forEach(user => {
             var lastSection = $('#row');
             var newSection = lastSection.clone(true);
-            newSection.attr('id', 'setthenewid');
-            newSection.show()
+            newSection.attr('id', user.regno);
+            newSection.show()            
+            $('#full_name', newSection).text(user.name);
+            $('#regno', newSection).text(user.regno);
+            $('#fac', newSection).text(user.faculty);
+            $('#dep', newSection).text(user.department);
+            $('#result_button', newSection).attr('data-user', JSON.stringify(user));
             lastSection.after(newSection);
-        }
 
+        })
+
+        $("#result_button").click(function () {
+            var user = $(this).data('user');
+            window.localStorage.setItem('user', JSON.stringify(user))
+            location.assign('/result.html?user=' + user.regno)
+        });
     } else {
         alert(getat)
     }

@@ -51,26 +51,28 @@
                                                                     <tr>
                                                                         <th scope="col">Name</th>
                                                                         <th scope="col">Reg No</th>
-                                                                        <th scope="col">Phone</th>
+                                                                        <th scope="col">Faculty</th>
+                                                                        <th scope="col">Department</th>
                                                                         <th scope="col">Actions</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr id="row">
-                                                                        <td>Chimeremeze Prevail Ejimadu</td>
-                                                                        <td>08130138694</td>
-                                                                        <td>2018514110</td>
+                                                                    <tr id="row" style="display: none;">
+                                                                        <td id="full_name"></td>
+                                                                        <td id="regno"></td>
+                                                                        <td id="fac"></td>
+                                                                        <td id="dep"></td>
                                                                         <td>
                                                                             <a href="javascript:void(0)"
-                                                                                id="' + data.id + '" role="button"
-                                                                                class="ml-1 editPack"><i
+                                                                                role="button" id="result_button"
+                                                                                class="ml-1"><i
                                                                                     class="fa fa-eye"
                                                                                     style="color: var(--secColor);">
                                                                                     <span
                                                                                         class="d-none d-md-inline-block">
                                                                                     </span></i></a>
                                                                             <a href="javascript:void(0)"
-                                                                                id="' + data.id + '" role="button"
+                                                                                id="" role="button"
                                                                                 class="ml-1 editPack"><i
                                                                                     class="fa fa-edit"
                                                                                     style="color: var(--priColor);">
@@ -78,7 +80,7 @@
                                                                                         class="d-none d-md-inline-block">
                                                                                     </span></i></a>
                                                                             <a href="javascript:void(0)" class="delPack"
-                                                                                id="' + data.id + '"><i
+                                                                                id=""><i
                                                                                     class="text-danger fa fa-trash">
                                                                                     <span
                                                                                         class="d-none d-md-inline-block">
