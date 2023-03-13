@@ -35,6 +35,14 @@ function includeHTML() {
 
 includeHTML()
 
+// Loader controls
+function showLoading() {
+    $("#loading").show();
+}
+
+function hideLoading() {
+    $("#loading").hide();
+}
 $(document).ready(function () {
     // Get the current page 
     let page = $('body').data('page');
@@ -46,6 +54,7 @@ $(document).ready(function () {
             url: base_url + 'users/1', // replace 1 wth user reg number
             type: 'get',
             // data:{query:query},
+            onload: showLoading(),
             success: function (response) { // remember to change "response" to "patient"
 
                 $(".a").text(patient.Appearance)
@@ -81,6 +90,8 @@ $(document).ready(function () {
                     // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
                     lastSection.after(newSection);
                 });
+
+                hideLoading()
             }
         });
 
@@ -90,7 +101,7 @@ $(document).ready(function () {
         $(".fac").text(JSON.parse(localStorage.getItem('user')).faculty)
         $(".dep").text(JSON.parse(localStorage.getItem('user')).department)
         $(".his").text(JSON.parse(localStorage.getItem('user')).history)
-    
+
     } else if (page == 'dashboard') {
         $("#d1").text(front[1])
         $("#d2").text(front[2])
@@ -101,34 +112,29 @@ $(document).ready(function () {
             var query = $("#query").val().trim();
 
             if (query != "") {
-                // $.ajax({
-                //     url: base_url+'heckUser.php',
-                //     type:'post',
-                //     data:{query:query},
-                //     success:function(response){
-                //         var msg = "";
-                //         if(response == 1){
-                //             window.location = "home.php";
-                //         }else{
-                //             msg = "Invalid username and password!";
-                //         }
-                //         $("#message").html(msg);
-                //     }
-                // });
 
-                users.forEach(user => {
-
-                    var lastSection = $('#ree');
-                    var newSection = lastSection.clone(true);
-                    newSection.attr('id', 'setthenewid');
-                    newSection.attr('data-user', user.name);
-                    newSection.show()
-                    $('#name', newSection).text(user.name);
-                    $('#regno', newSection).text(user.regno);
-                    $('#result_button', newSection).attr('data-user', JSON.stringify(user));
-                    lastSection.after(newSection);
-
+                // Make call and get patient data
+                $.ajax({
+                    url: base_url + 'users', // replace endpoint
+                    type: 'get',
+                    onload: showLoading(),
+                    // data:{query:query},
+                    success: function (response) { // remember to change "response" to "users"
+                        users.forEach(user => {
+                            var lastSection = $('#ree');
+                            var newSection = lastSection.clone(true);
+                            newSection.attr('id', 'setthenewid');
+                            newSection.attr('data-user', user.name);
+                            newSection.show()
+                            $('#name', newSection).text(user.name);
+                            $('#regno', newSection).text(user.regno);
+                            $('#result_button', newSection).attr('data-user', JSON.stringify(user));
+                            lastSection.after(newSection);
+                        });
+                        hideLoading()
+                    }
                 });
+
 
             }
         });
@@ -144,6 +150,7 @@ $(document).ready(function () {
         $.ajax({
             url: base_url + 'users', // replace 1 wth user reg number
             type: 'get',
+            onload: showLoading(),
             // data:{query:query},
             success: function (response) { // remember to change "response" to "users"
 
@@ -157,9 +164,10 @@ $(document).ready(function () {
                     $('#fac', newSection).text(user.faculty);
                     $('#dep', newSection).text(user.department);
                     $('.result_button', newSection).attr('data-user', JSON.stringify(user));
-                    lastSection.after(newSection);        
+                    lastSection.after(newSection);
                 })
-        
+
+                hideLoading()
             }
         })
         $(".result_button").click(function () {
