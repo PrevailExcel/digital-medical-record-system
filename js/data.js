@@ -23,38 +23,41 @@ export const users = [
 ]
 
 export const front = [
-    12 , 48 ,  53, 60 
+    12, 48, 53, 60
 ]
 
-export const history = [    
-    {
-        regno: '2018514100',
-        title: 'First title of the history',
-        body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
-        date:  '23 Feb, 2023'
-    },
-    {
-        regno: '2018514100',
-        title: 'Second title of the history',
-        body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
-        date:  '23 Feb, 2023'
-    },
-    {
-        regno: '2018514101',
-        title: 'First title of the history',
-        body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
-        date:  '23 Feb, 2023'
-    },
-    {
-        regno: '2018514102',
-        title: 'First title of the history',
-        body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
-        date:  '23 Feb, 2023'
-    },
-    {
-        regno: '2018514102',
-        title: 'First title of the history',
-        body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
-        date:  '23 Feb, 2023'
-    },
-]
+export const patient = {
+    Appearance: "Amber",
+    pH: "Neutral",
+    Protein: "null",
+    Glucose: "null",
+    Ketones: "null",
+    Bilirubin: "null",
+    Urobilinogen: "null",
+    "Blood (Lysed)": "null",
+    WBCs: "Couldn't fathom the writing",
+    RBCs: "null",
+    Casts: "null",
+    "T.Vaginalis": "null",
+    "Yeast Cells": "null",
+    Hb: 11.7,
+    "Hb - Genotype": "AA",
+    'Blood Group': "A",
+    'g/ dl': "73 %",
+    'Rh"D"': "Positive",
+    'VDRL': "Negative",
+    HBsAg: "Negative",
+    history: [
+        {
+            title: 'First title of the history',
+            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+            date: '23 Feb, 2023'
+        },
+        {
+            title: 'First title of the history',
+            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+            date: '23 Feb, 2023'
+        },
+    ]
+
+};

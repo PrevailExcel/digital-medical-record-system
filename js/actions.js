@@ -1,8 +1,10 @@
-import { users, front, history } from "./data.js";
+import { users, front, patient } from "./data.js";
 import { auth } from "./auth.js";
 
-const base_url = '127.0.0.1:8000/';
+// API endpoint
+const base_url = 'https://dummyjson.com/';
 
+// Add Sidebar to all pages
 function includeHTML() {
     var z, i, elmnt, file, xhttp;
     /* Loop through a collection of all HTML elements: */
@@ -34,28 +36,61 @@ function includeHTML() {
 includeHTML()
 
 $(document).ready(function () {
+    // Get the current page 
     let page = $('body').data('page');
+
     if (page == 'result') {
+
+        // Make call and get patient data
+        $.ajax({
+            url: base_url + 'users/1', // replace 1 wth user reg number
+            type: 'get',
+            // data:{query:query},
+            success: function (response) { // remember to change "response" to "patient"
+
+                $(".a").text(patient.Appearance)
+                $(".b").text(patient.pH)
+                $(".c").text(patient.Protein)
+                $(".d").text(patient.Glucose)
+                $(".e").text(patient.Ketones)
+                $(".f").text(patient.Bilirubin)
+                $(".g").text(patient.Urobilinogen)
+                $(".h").text(patient["Blood (Lysed)"])
+                $(".i").text(patient.WBCs)
+                $(".j").text(patient.RBCs)
+                $(".k").text(patient.Casts)
+                $(".l").text(patient["T.Vaginalis"])
+                $(".m").text(patient["Yeast Cells"])
+                $(".n").text(patient.Hb)
+                $(".o").text(patient["Blood Group"])
+                $(".p").text(patient["g/ dl"])
+                $(".q").text(patient["Rh\"D\""])
+                $(".r").text(patient.VDRL)
+                $(".s").text(patient.HBsAg)
+                $(".t").text(patient["Hb - Genotype"])
+
+                patient.history.forEach(user => {
+                    var lastSection = $('#hist');
+                    var newSection = lastSection.clone(true);
+                    newSection.attr('id', JSON.parse(localStorage.getItem('user')).regno);
+                    newSection.attr('data-user', user.name);
+                    newSection.show()
+                    $('#title', newSection).text(user.title);
+                    $('#date', newSection).text(user.date);
+                    $('#body', newSection).text(user.body);
+                    // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
+                    lastSection.after(newSection);
+                });
+            }
+        });
+
+        // Get remaining data from local strorage
         $(".full_name").text(JSON.parse(localStorage.getItem('user')).name)
         $(".regno").text(JSON.parse(localStorage.getItem('user')).regno)
         $(".fac").text(JSON.parse(localStorage.getItem('user')).faculty)
         $(".dep").text(JSON.parse(localStorage.getItem('user')).department)
         $(".his").text(JSON.parse(localStorage.getItem('user')).history)
-
-        let myHistory = history.filter(item => item.regno == JSON.parse(localStorage.getItem('user')).regno)
-        myHistory.forEach(user => {
-            var lastSection = $('#hist');
-            var newSection = lastSection.clone(true);
-            newSection.attr('id', user.regno);
-            newSection.attr('data-user', user.name);
-            newSection.show()
-            $('#title', newSection).text(user.title);
-            $('#date', newSection).text(user.date);
-            $('#body', newSection).text(user.body);
-            // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
-            lastSection.after(newSection);
-
-        });
+    
     } else if (page == 'dashboard') {
         $("#d1").text(front[1])
         $("#d2").text(front[2])
@@ -105,21 +140,29 @@ $(document).ready(function () {
         });
     } else if (page == 'patients') {
 
-        users.forEach(user => {
-            var lastSection = $('#row');
-            var newSection = lastSection.clone(true);
-            newSection.attr('id', user.regno);
-            newSection.show()            
-            $('#full_name', newSection).text(user.name);
-            $('#regno', newSection).text(user.regno);
-            $('#fac', newSection).text(user.faculty);
-            $('#dep', newSection).text(user.department);
-            $('#result_button', newSection).attr('data-user', JSON.stringify(user));
-            lastSection.after(newSection);
+        // Make call and get patient data
+        $.ajax({
+            url: base_url + 'users', // replace 1 wth user reg number
+            type: 'get',
+            // data:{query:query},
+            success: function (response) { // remember to change "response" to "users"
 
+                users.forEach(user => {
+                    var lastSection = $('#row');
+                    var newSection = lastSection.clone(true);
+                    newSection.attr('id', user.regno);
+                    newSection.show()
+                    $('#full_name', newSection).text(user.name);
+                    $('#regno', newSection).text(user.regno);
+                    $('#fac', newSection).text(user.faculty);
+                    $('#dep', newSection).text(user.department);
+                    $('.result_button', newSection).attr('data-user', JSON.stringify(user));
+                    lastSection.after(newSection);        
+                })
+        
+            }
         })
-
-        $("#result_button").click(function () {
+        $(".result_button").click(function () {
             var user = $(this).data('user');
             window.localStorage.setItem('user', JSON.stringify(user))
             location.assign('/result.html?user=' + user.regno)
