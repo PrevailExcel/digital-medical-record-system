@@ -53,7 +53,10 @@ $(document).ready(function () {
         $.ajax({
             url: base_url + 'users/1', // replace 1 wth user reg number
             type: 'get',
-            // data:{query:query},
+            headers: {
+                'Authorization': 'Bearer '+ localStorage.getItem('auth'), 
+                'Content-Type': 'application/json'
+              },
             onload: showLoading(),
             success: function (response) { // remember to change "response" to "patient"
 
@@ -176,10 +179,31 @@ $(document).ready(function () {
             location.assign('/result.html?user=' + user.regno)
         });
     } else {
-        alert(getat)
     }
 
     $("#logout").on("click", function () {
         auth.logOut();
+    });
+    $("#login_button").on("click", function () {
+
+        let id = $('#staff_id').val();
+        let password = $('#password').val();
+        // Make call to server for token
+        $.ajax({
+            url: base_url + 'auth/login',
+            type: 'post',
+            data: {
+                //Delete when server is ready.
+                username: 'kminchelle', //for testing
+                password: '0lelplR', //for testing
+
+                // id: id,
+                // password: password
+            },
+            onload: showLoading(),
+            success: function (response) {
+                auth.login(response);
+            }
+        })
     });
 });

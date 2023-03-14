@@ -38,19 +38,19 @@
                         <form class="px-5">
                             <div class="my-5">
                                 <input type="text" class="login form-control border-0 border-bottom"
-                                    id="exampleFormControlInput1" placeholder="Staff Id">
+                                    id="staff_id" placeholder="Staff Id">
                             </div>
 
                             <div class="input-group mb-5">
-                                <input type="text" class="login form-control border-0 border-bottom"
-                                    id="exampleFormControlInput1" placeholder="Password"> <span
+                                <input type="password" class="login form-control border-0 border-bottom"
+                                    id="password" placeholder="Password"> <span
                                     class="input-group-text border-0 border-bottom">
                                     <i class="text-muted fa fa-eye-slash" id="togglePassword"
                                         style="cursor: pointer"></i>
                                 </span>
                             </div>
                             <div class="justify-content-center text-center pt-3">
-                                <button class="btn btn-dark border-0 px-5 py-2 rounded-pill"
+                                <button class="btn btn-dark border-0 px-5 py-2 rounded-pill" id="login_button" type="button"
                                     style="background-color: var(--priColor) !important;">Login to
                                     Dashboard</button>
                             </div>
@@ -64,6 +64,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="module" src="js/actions.js"></script>
 </body>
 
 </html>
