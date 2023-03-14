@@ -154,7 +154,7 @@ $(document).ready(function () {
             url: base_url + 'users', // replace 1 wth user reg number
             type: 'get',
             onload: showLoading(),
-            // data:{query:query},
+            // data:{limit: 5, skip: 10},
             success: function (response) { // remember to change "response" to "users"
 
                 users.forEach(user => {
