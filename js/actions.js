@@ -54,9 +54,9 @@ $(document).ready(function () {
             url: base_url + 'users/1', // replace 1 wth user reg number
             type: 'get',
             headers: {
-                'Authorization': 'Bearer '+ localStorage.getItem('auth'), 
+                'Authorization': 'Bearer ' + localStorage.getItem('auth'),
                 'Content-Type': 'application/json'
-              },
+            },
             onload: showLoading(),
             success: function (response) { // remember to change "response" to "patient"
 
@@ -116,6 +116,42 @@ $(document).ready(function () {
         $(".fac").text(JSON.parse(localStorage.getItem('user')).faculty)
         $(".dep").text(JSON.parse(localStorage.getItem('user')).department)
         $(".his").text(JSON.parse(localStorage.getItem('user')).history)
+
+        // Function for History data entry 
+        $(".add_history").click(function () {
+            let title = $('#write_title').val();
+            let body = $('#write_body').val();
+            $.ajax({
+                url: base_url + 'user/1', // replace with endpoint to add history
+                type: 'post',
+                data: {
+                    title: title,
+                    body: body
+                },
+                onload: showLoading(),
+                success: function (response) {
+                    window.location.reload()
+                }
+            })
+        });
+
+        // Function for doctor's note data entry 
+        $(".add_note").click(function () {
+            let title = $('#write_title').val();
+            let body = $('#write_body').val();
+            $.ajax({
+                url: base_url + 'user/1', // replace with endpoint to add history
+                type: 'post',
+                data: {
+                    title: title,
+                    body: body
+                },
+                onload: showLoading(),
+                success: function (response) {
+                    window.location.reload()
+                }
+            })
+        });
 
     } else if (page == 'dashboard') {
         $("#d1").text(front[1])
@@ -185,6 +221,7 @@ $(document).ready(function () {
                 hideLoading()
             }
         })
+
         $(".result_button").click(function () {
             var user = $(this).data('user');
             window.localStorage.setItem('user', JSON.stringify(user))
@@ -196,6 +233,8 @@ $(document).ready(function () {
     $("#logout").on("click", function () {
         auth.logOut();
     });
+
+    //Login capture
     $("#login_button").on("click", function () {
 
         let id = $('#staff_id').val();
@@ -218,4 +257,26 @@ $(document).ready(function () {
             }
         })
     });
+
+     // Function to add new student data
+     $("#add_student").click(function () {
+        let name = $('#write_name').val();
+        let regno = $('#write_regno').val();
+        let phone = $('#write_phone').val();
+        let faculty = $('#write_faculty').val();
+        let department = $('#write_department').val();
+        $.ajax({
+            url: base_url + 'user/1', // replace with endpoint to add history
+            type: 'post',
+            data: {
+                title: title,
+                body: body
+            },
+            onload: showLoading(),
+            success: function (response) {
+                window.location.reload()
+            }
+        })
+    });
+
 });

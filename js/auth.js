@@ -7,9 +7,16 @@ class Auth {
     }
     // check to see if the localStorage item passed to the function is valid and set
     validateAuth(auth) {
-        if (!auth) {
-            window.location.replace("/index.html");
-        } else {
+        if (window.location.pathname != '/index.html')
+            if (!auth) {
+                window.location.replace("/index.html");
+            } else {
+                document.querySelector("body").style.display = "block";
+            }
+        else {
+            if (auth)
+                window.location.replace("/dashboard.html");
+
             document.querySelector("body").style.display = "block";
         }
     }
