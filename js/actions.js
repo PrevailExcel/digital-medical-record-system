@@ -118,7 +118,7 @@ $(document).ready(function () {
         $(".his").text(JSON.parse(localStorage.getItem('user')).history)
 
         // Function for History data entry 
-        $(".add_history").click(function () {
+        function addHistory() {
             let title = $('#write_title').val();
             let body = $('#write_body').val();
             $.ajax({
@@ -132,11 +132,11 @@ $(document).ready(function () {
                 success: function (response) {
                     window.location.reload()
                 }
-            })
-        });
+            });
+        }
 
         // Function for doctor's note data entry 
-        $(".add_note").click(function () {
+        function addNote() {
             let title = $('#write_title').val();
             let body = $('#write_body').val();
             $.ajax({
@@ -151,6 +151,13 @@ $(document).ready(function () {
                     window.location.reload()
                 }
             })
+        }
+
+        $('#add_history').click(function () {
+            $('#type_to_add').text('History')
+        });
+        $('#add_note').click(function () {
+            $('#type_to_add').text('Note')
         });
 
     } else if (page == 'dashboard') {
@@ -258,8 +265,8 @@ $(document).ready(function () {
         })
     });
 
-     // Function to add new student data
-     $("#add_student").click(function () {
+    // Function to add new student data
+    $("#add_student").click(function () {
         let name = $('#write_name').val();
         let regno = $('#write_regno').val();
         let phone = $('#write_phone').val();
