@@ -94,6 +94,18 @@ $(document).ready(function () {
                     lastSection.after(newSection);
                 });
 
+                patient.notes.forEach(note => {
+                    var lastSection = $('#note');
+                    var newSection = lastSection.clone(true);
+                    newSection.attr('id', JSON.parse(localStorage.getItem('user')).regno);
+                    newSection.show()
+                    $('#ntitle', newSection).text(note.title);
+                    $('#ndate', newSection).text(note.date);
+                    $('#nbody', newSection).text(note.body);
+                    // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
+                    lastSection.after(newSection);
+                });
+
                 hideLoading()
             }
         });
