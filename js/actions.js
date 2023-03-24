@@ -159,6 +159,14 @@ $(document).ready(function () {
         $('#add_note').click(function () {
             $('#type_to_add').text('Note')
         });
+        $('#save_history_or_note').click(function () {
+            if ($('#type_to_add').text() == 'Note') {
+                addNote()
+            } else {
+                addHistory()
+            }
+        });
+
 
     } else if (page == 'dashboard') {
         $("#d1").text(front[1])
