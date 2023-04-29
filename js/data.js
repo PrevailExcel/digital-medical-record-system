@@ -66,7 +66,7 @@ export const patient = {
     ],
     notes: [
         {
-            title: 'First Doctor\'s note',
+            title: 'Wille Doctor\'s note',
             body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
             date: '23 Feb, 2023'
         },

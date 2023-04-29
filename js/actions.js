@@ -3,6 +3,8 @@ import { auth } from "./auth.js";
 
 // API endpoint
 const base_url = 'https://dummyjson.com/';
+const db = JSON.parse(localStorage.getItem("db"));
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 // Add Sidebar to all pages
 function includeHTML() {
@@ -32,7 +34,6 @@ function includeHTML() {
         }
     }
 }
-
 includeHTML()
 
 // Loader controls
@@ -43,6 +44,201 @@ function showLoading() {
 function hideLoading() {
     $("#loading").hide();
 }
+
+function addDb() {
+
+    var dbt = {
+        students: [],
+        patient: [],
+        front: [12, 48, 53, 60]
+    };
+
+    if (!localStorage.getItem("db")) {
+        dbt.students.push(
+            {
+                regno: '2018514100',
+                name: 'Nnanna Johnson Emeka',
+                faculty: 'Physical Science',
+                department: 'Computer Science',
+                history: 3,
+                data: {
+                    Appearance: "Amber",
+                    pH: "Neutral",
+                    Protein: "null",
+                    Glucose: "null",
+                    Ketones: "null",
+                    Bilirubin: "null",
+                    Urobilinogen: "null",
+                    "Blood (Lysed)": "null",
+                    WBCs: "Couldn't fathom the writing",
+                    RBCs: "null",
+                    Casts: "null",
+                    "T.Vaginalis": "null",
+                    "Yeast Cells": "null",
+                    Hb: 11.7,
+                    "Hb - Genotype": "AA",
+                    'Blood Group': "A",
+                    'g/ dl': "73 %",
+                    'Rh"D"': "Positive",
+                    'VDRL': "Negative",
+                    HBsAg: "Negative",
+                    history: [
+                        {
+                            title: 'First title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '23 Feb, 2023'
+                        },
+                        {
+                            title: 'Second title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '24 Feb, 2023'
+                        },
+                        {
+                            title: 'Third title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '7 Mar, 2023'
+                        },
+                    ],
+                    notes: [
+                        {
+                            title: 'Wille Doctor\'s note',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '23 Feb, 2023'
+                        },
+                        {
+                            title: 'Second Doctor\'s note',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '24 Feb, 2023'
+                        },
+                    ]
+
+                }
+            },
+            {
+                regno: '2018514101',
+                name: 'Chimeremeze Prevail Exccellent',
+                faculty: 'Physical Science',
+                department: 'Computer Science',
+                history: 3,
+                data: {
+                    Appearance: "Amber",
+                    pH: "Neutral",
+                    Protein: "null",
+                    Glucose: "null",
+                    Ketones: "null",
+                    Bilirubin: "null",
+                    Urobilinogen: "null",
+                    "Blood (Lysed)": "null",
+                    WBCs: "Couldn't fathom the writing",
+                    RBCs: "null",
+                    Casts: "null",
+                    "T.Vaginalis": "null",
+                    "Yeast Cells": "null",
+                    Hb: 11.7,
+                    "Hb - Genotype": "AA",
+                    'Blood Group': "A",
+                    'g/ dl': "73 %",
+                    'Rh"D"': "Positive",
+                    'VDRL': "Negative",
+                    HBsAg: "Negative",
+                    history: [
+                        {
+                            title: 'First title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '23 Feb, 2023'
+                        },
+                        {
+                            title: 'Second title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '24 Feb, 2023'
+                        },
+                        {
+                            title: 'Third title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '7 Mar, 2023'
+                        },
+                    ],
+                    notes: [
+                        {
+                            title: 'Wille Doctor\'s note',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '23 Feb, 2023'
+                        },
+                        {
+                            title: 'Second Doctor\'s note',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '24 Feb, 2023'
+                        },
+                    ]
+
+                }
+            },
+            {
+                regno: '2018514102',
+                name: 'Odumodu Elijah Precious',
+                faculty: 'Physical Science',
+                department: 'Mathematics',
+                history: 3,
+                data: {
+                    Appearance: "Amber",
+                    pH: "Neutral",
+                    Protein: "null",
+                    Glucose: "null",
+                    Ketones: "null",
+                    Bilirubin: "null",
+                    Urobilinogen: "null",
+                    "Blood (Lysed)": "null",
+                    WBCs: "Couldn't fathom the writing",
+                    RBCs: "null",
+                    Casts: "null",
+                    "T.Vaginalis": "null",
+                    "Yeast Cells": "null",
+                    Hb: 11.7,
+                    "Hb - Genotype": "AA",
+                    'Blood Group': "A",
+                    'g/ dl': "73 %",
+                    'Rh"D"': "Positive",
+                    'VDRL': "Negative",
+                    HBsAg: "Negative",
+                    history: [
+                        {
+                            title: 'First title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '23 Feb, 2023'
+                        },
+                        {
+                            title: 'Second title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '24 Feb, 2023'
+                        },
+                        {
+                            title: 'Third title of the history',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '7 Mar, 2023'
+                        },
+                    ],
+                    notes: [
+                        {
+                            title: 'Wille Doctor\'s note',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '23 Feb, 2023'
+                        },
+                        {
+                            title: 'Second Doctor\'s note',
+                            body: 'Bala blu cassava highway from electricty garri bulaba agbado youths townhall broooom tia-tia highway 50million. Umbreleda garri electricty down-payment army army umbreleda. Recruit agbado corn transmission broooom electricty. Line agbado eba eba bala transmission electricty electricty townhall agbado recruit generated. ',
+                            date: '24 Feb, 2023'
+                        },
+                    ]
+
+                }
+            });
+
+        // Store the object into storage
+        localStorage.setItem("db", JSON.stringify(dbt));
+    }
+}
+addDb();
+
 $(document).ready(function () {
     // Get the current page 
     let page = $('body').data('page');
@@ -81,29 +277,39 @@ $(document).ready(function () {
                 $(".s").text(patient.HBsAg)
                 $(".t").text(patient["Hb - Genotype"])
 
-                patient.history.forEach(user => {
-                    var lastSection = $('#hist');
-                    var newSection = lastSection.clone(true);
-                    newSection.attr('id', JSON.parse(localStorage.getItem('user')).regno);
-                    newSection.attr('data-user', user.name);
-                    newSection.show()
-                    $('#title', newSection).text(user.title);
-                    $('#date', newSection).text(user.date);
-                    $('#body', newSection).text(user.body);
-                    // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
-                    lastSection.after(newSection);
+
+                // read the DB
+                db.students.forEach((stu) => {
+                    if (stu.regno == JSON.parse(localStorage.getItem('user')).regno) {
+                        stu.data.history.forEach(user => {
+                            var lastSection = $('#hist');
+                            var newSection = lastSection.clone(true);
+                            newSection.attr('id', JSON.parse(localStorage.getItem('user')).regno);
+                            newSection.attr('data-user', user.name);
+                            newSection.show()
+                            $('#title', newSection).text(user.title);
+                            $('#date', newSection).text(user.date);
+                            $('#body', newSection).text(user.body);
+                            // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
+                            lastSection.after(newSection);
+                        });
+                    }
                 });
 
-                patient.notes.forEach(note => {
-                    var lastSection = $('#note');
-                    var newSection = lastSection.clone(true);
-                    newSection.attr('id', JSON.parse(localStorage.getItem('user')).regno);
-                    newSection.show()
-                    $('#ntitle', newSection).text(note.title);
-                    $('#ndate', newSection).text(note.date);
-                    $('#nbody', newSection).text(note.body);
-                    // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
-                    lastSection.after(newSection);
+                db.students.forEach((stu) => {
+                    if (stu.regno == JSON.parse(localStorage.getItem('user')).regno) {
+                        stu.data.notes.forEach(note => {
+                            var lastSection = $('#note');
+                            var newSection = lastSection.clone(true);
+                            newSection.attr('id', JSON.parse(localStorage.getItem('user')).regno);
+                            newSection.show()
+                            $('#ntitle', newSection).text(note.title);
+                            $('#ndate', newSection).text(note.date);
+                            $('#nbody', newSection).text(note.body);
+                            // $('#result_button', newSection).attr('data-user', JSON.stringify(user));
+                            lastSection.after(newSection);
+                        });
+                    }
                 });
 
                 hideLoading()
@@ -121,16 +327,27 @@ $(document).ready(function () {
         function addHistory() {
             let title = $('#write_title').val();
             let body = $('#write_body').val();
-            $.ajax({
-                url: base_url + 'user/1', // replace with endpoint to add history
-                type: 'post',
-                data: {
-                    title: title,
-                    body: body
-                },
-                onload: showLoading(),
-                success: function (response) {
+            
+            // Set date
+            const d = new Date();
+            let day = d.getDate();
+            let month = months[d.getMonth()];
+            let year = d.getFullYear();
+
+            // write to DB
+            db.students.forEach((stu) => {
+                if (stu.regno == JSON.parse(localStorage.getItem('user')).regno) {
+                    stu.data.history.push(
+                        {
+                            title: title,
+                            body: body,
+                            date: day + ' ' + month + ', ' + year
+                        }
+                    );
+                    localStorage.setItem("db", JSON.stringify(db));
                     window.location.reload()
+                } else {
+                    console.log(stu.data)
                 }
             });
         }
@@ -139,18 +356,29 @@ $(document).ready(function () {
         function addNote() {
             let title = $('#write_title').val();
             let body = $('#write_body').val();
-            $.ajax({
-                url: base_url + 'user/1', // replace with endpoint to add history
-                type: 'post',
-                data: {
-                    title: title,
-                    body: body
-                },
-                onload: showLoading(),
-                success: function (response) {
+            
+            // Set date
+            const d = new Date();
+            let day = d.getDate();
+            let month = months[d.getMonth()];
+            let year = d.getFullYear();
+
+            // write to DB
+            db.students.forEach((stu) => {
+                if (stu.regno == JSON.parse(localStorage.getItem('user')).regno) {
+                    stu.data.notes.push(
+                        {
+                            title: title,
+                            body: body,
+                            date: day + ' ' + month + ', ' + year
+                        }
+                    );
+                    localStorage.setItem("db", JSON.stringify(db));
                     window.location.reload()
+                } else {
+                    console.log(stu.data)
                 }
-            })
+            });
         }
 
         $('#add_history').click(function () {
@@ -220,7 +448,7 @@ $(document).ready(function () {
             // data:{limit: 5, skip: 10},
             success: function (response) { // remember to change "response" to "users"
 
-                users.forEach(user => {
+                db.students.forEach(user => {
                     var lastSection = $('#row');
                     var newSection = lastSection.clone(true);
                     newSection.attr('id', user.regno);
@@ -280,18 +508,24 @@ $(document).ready(function () {
         let phone = $('#write_phone').val();
         let faculty = $('#write_faculty').val();
         let department = $('#write_department').val();
-        $.ajax({
-            url: base_url + 'user/1', // replace with endpoint to add history
-            type: 'post',
-            data: {
-                title: title,
-                body: body
-            },
-            onload: showLoading(),
-            success: function (response) {
-                window.location.reload()
+
+        // write to DB
+        db.students.push(
+            {
+                regno: regno,
+                name: name,
+                faculty: faculty,
+                department: department,
+                history: 0,
+                phone: phone,
+                data: {
+                    notes: [],
+                    history: []
+                }
             }
-        })
+        );
+        localStorage.setItem("db", JSON.stringify(db));
+        window.location.reload()
     });
 
 });
